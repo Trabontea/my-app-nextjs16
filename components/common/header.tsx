@@ -6,9 +6,18 @@ import {
   LoaderIcon,
   SparkleIcon,
   SparklesIcon,
+  User2Icon,
 } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
+import { Button } from '../ui/button';
+import {
+  SignInButton,
+  SignUpButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from '@clerk/nextjs';
 
 const Logo = () => {
   return (
@@ -25,6 +34,7 @@ const Logo = () => {
 
 const Header = () => {
   const pathname = usePathname() || '/';
+  const isSignedIn = false;
   return (
     <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
       <div className="wrapper px-12">
@@ -52,6 +62,24 @@ const Header = () => {
               <span>Explore</span>
             </Link>
           </nav>
+
+          <div className="flex items-center gap-3">
+            <SignedOut>
+              <SignInButton />
+              <SignUpButton>
+                <Button>Sign Up</Button>
+              </SignUpButton>
+            </SignedOut>
+            <SignedIn>
+              <Button asChild>
+                <Link href="/submit">
+                  <SparklesIcon className="size-4" />
+                  Submit Project
+                </Link>
+              </Button>
+              <UserButton />
+            </SignedIn>
+          </div>
         </div>
       </div>
     </header>
