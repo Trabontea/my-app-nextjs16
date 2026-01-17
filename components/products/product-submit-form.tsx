@@ -3,7 +3,7 @@ import { Loader2Icon, SparklesIcon } from 'lucide-react';
 import { FormField } from '../forms/form-field';
 import { Button } from '../ui/button';
 import { FormState } from '@/types';
-import { addProduct } from '../../lib/products/product-actions';
+import { addProductAction } from '../../lib/products/product-actions';
 import { useActionState } from 'react';
 
 export default function ProductSubmitForm() {
@@ -20,13 +20,20 @@ export default function ProductSubmitForm() {
   };
 
   const [state, formAction, isPending] = useActionState(
-    addProduct,
-    initialState
+    addProductAction,
+    initialState,
   );
+
+  const { errors, message, success } = state;
+
+  const getFieldErrors = (fieldName: string): string[] => {
+    if (!errors) return [];
+    return (errors as Record<string, string[]>)[fieldName] ?? [];
+  };
 
   return (
     <div className="mt-20">
-      Form action will execute direct the action without
+      {/* Form action will execute direct the action without */}
       <form className="space-y-6" action={formAction}>
         <FormField
           label="Product Name"
@@ -35,7 +42,7 @@ export default function ProductSubmitForm() {
           placeholder="My Awesome Product"
           required
           onChange={() => {}}
-          error={['aa', 'bbe']}
+          error={errors?.name}
         />
         <FormField
           label="Slug"
@@ -44,8 +51,8 @@ export default function ProductSubmitForm() {
           placeholder="my-awesome-product"
           required
           onChange={() => {}}
-          error={['aa', 'bbe']}
           helperText="URL-friendly version of your product name"
+          error={errors?.slug}
         />
         <FormField
           label="Tagline"
@@ -54,7 +61,7 @@ export default function ProductSubmitForm() {
           placeholder="A brief, catchy description"
           required
           onChange={() => {}}
-          error={[]}
+          error={errors?.tagline}
         />
         <FormField
           label="Description"
@@ -63,8 +70,8 @@ export default function ProductSubmitForm() {
           placeholder="Tell us more about your product..."
           required
           onChange={() => {}}
-          error={[]}
           textarea
+          error={errors?.description}
         />
         <FormField
           label="Website URL"
@@ -73,8 +80,8 @@ export default function ProductSubmitForm() {
           placeholder="https://yourproduct.com"
           required
           onChange={() => {}}
-          error={[]}
           helperText="Enter your product's website or landing page"
+          error={errors?.websiteUrl}
         />
         <FormField
           label="Tags"
@@ -83,7 +90,7 @@ export default function ProductSubmitForm() {
           placeholder="AI, Productivity, SaaS"
           required
           onChange={() => {}}
-          error={[]}
+          error={errors?.tags}
           helperText="Comma-separated tags (e.g., AI, SaaS, Productivity)"
         />
 
