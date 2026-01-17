@@ -2,13 +2,10 @@ import { CalendarIcon, RocketIcon } from 'lucide-react';
 import SectionHeader from '@/components/common/section-header';
 import ProductCard from '@/components/products/product-card';
 import EmptyState from '@/components/common/empty-state';
-// import { getRecentlyLaunchedProducts } from '@/lib/products/product-select';
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const recentlyLaunchedProducts: any[] = [];
+import { getRecentlyLaunchedProducts } from '@/lib/products/product-select';
 
 export default async function RecentlyLaunchedProducts() {
-  // const recentlyLaunchedProducts = await getRecentlyLaunchedProducts();
+  const recentlyLaunchedProducts = await getRecentlyLaunchedProducts();
 
   return (
     <section className="py-20">

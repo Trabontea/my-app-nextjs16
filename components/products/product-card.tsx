@@ -8,16 +8,20 @@ import {
 import { StarIcon } from 'lucide-react';
 import Link from 'next/link';
 import { Badge } from '../ui/badge';
+import { InferSelectModel } from 'drizzle-orm';
+import { products } from '@/db/schema';
 
-interface Product {
-  id: number;
-  name: string;
-  description: string;
-  tags: string[];
-  isFeatured: boolean;
-  slug: string;
-  votes: number;
-}
+type Product = InferSelectModel<typeof products>;
+
+// interface Product {
+//   id: number;
+//   name: string;
+//   description: string;
+//   tags: string[];
+//   isFeatured: boolean;
+//   slug: string;
+//   votes: number;
+// }
 
 export default function ProductCard({ product }: { product: Product }) {
   const hasVoted = false;
@@ -31,7 +35,7 @@ export default function ProductCard({ product }: { product: Product }) {
                 <CardTitle className="text-lg group-hover:text-primary transition-colors">
                   {product.name}
                 </CardTitle>
-                {product.isFeatured && (
+                {product.voteCount > 10 && (
                   <Badge className="gap-1 bg-primary text-primary-foreground">
                     <StarIcon className="size-3 fill-current" />
                     Featured
