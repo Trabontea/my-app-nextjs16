@@ -88,15 +88,20 @@
   --shadow-color: hsl(196 83% 10%);
   --shadow-2xs: 2px 2px 4px 0px hsl(196 83% 10% / 0.07);
   --shadow-xs: 2px 2px 4px 0px hsl(196 83% 10% / 0.07);
-  --shadow-sm: 2px 2px 4px 0px hsl(196 83% 10% / 0.15),
+  --shadow-sm:
+    2px 2px 4px 0px hsl(196 83% 10% / 0.15),
     2px 1px 2px -1px hsl(196 83% 10% / 0.15);
-  --shadow: 2px 2px 4px 0px hsl(196 83% 10% / 0.15),
+  --shadow:
+    2px 2px 4px 0px hsl(196 83% 10% / 0.15),
     2px 1px 2px -1px hsl(196 83% 10% / 0.15);
-  --shadow-md: 2px 2px 4px 0px hsl(196 83% 10% / 0.15),
+  --shadow-md:
+    2px 2px 4px 0px hsl(196 83% 10% / 0.15),
     2px 2px 4px -1px hsl(196 83% 10% / 0.15);
-  --shadow-lg: 2px 2px 4px 0px hsl(196 83% 10% / 0.15),
+  --shadow-lg:
+    2px 2px 4px 0px hsl(196 83% 10% / 0.15),
     2px 4px 6px -1px hsl(196 83% 10% / 0.15);
-  --shadow-xl: 2px 2px 4px 0px hsl(196 83% 10% / 0.15),
+  --shadow-xl:
+    2px 2px 4px 0px hsl(196 83% 10% / 0.15),
     2px 8px 10px -1px hsl(196 83% 10% / 0.15);
   --shadow-2xl: 2px 2px 4px 0px hsl(196 83% 10% / 0.38);
   --tracking-normal: 0em;
@@ -148,15 +153,20 @@
   --shadow-color: hsl(196 83% 10%);
   --shadow-2xs: 2px 2px 4px 0px hsl(196 83% 10% / 0.07);
   --shadow-xs: 2px 2px 4px 0px hsl(196 83% 10% / 0.07);
-  --shadow-sm: 2px 2px 4px 0px hsl(196 83% 10% / 0.15),
+  --shadow-sm:
+    2px 2px 4px 0px hsl(196 83% 10% / 0.15),
     2px 1px 2px -1px hsl(196 83% 10% / 0.15);
-  --shadow: 2px 2px 4px 0px hsl(196 83% 10% / 0.15),
+  --shadow:
+    2px 2px 4px 0px hsl(196 83% 10% / 0.15),
     2px 1px 2px -1px hsl(196 83% 10% / 0.15);
-  --shadow-md: 2px 2px 4px 0px hsl(196 83% 10% / 0.15),
+  --shadow-md:
+    2px 2px 4px 0px hsl(196 83% 10% / 0.15),
     2px 2px 4px -1px hsl(196 83% 10% / 0.15);
-  --shadow-lg: 2px 2px 4px 0px hsl(196 83% 10% / 0.15),
+  --shadow-lg:
+    2px 2px 4px 0px hsl(196 83% 10% / 0.15),
     2px 4px 6px -1px hsl(196 83% 10% / 0.15);
-  --shadow-xl: 2px 2px 4px 0px hsl(196 83% 10% / 0.15),
+  --shadow-xl:
+    2px 2px 4px 0px hsl(196 83% 10% / 0.15),
     2px 8px 10px -1px hsl(196 83% 10% / 0.15);
   --shadow-2xl: 2px 2px 4px 0px hsl(196 83% 10% / 0.38);
 }
@@ -256,4 +266,29 @@
   .section-header-with-count {
     @apply flex items-center justify-between mb-6;
   }
+}
+
+[data-localization-key='signIn.start.actionText'] {
+  display: none;
+}
+[data-localization-key='signIn.start.actionText'] {
+  display: none;
+}
+
+/* Hide Clerk SignIn modal footer "Don't have an account? Sign up" */
+[data-localization-key='signIn.start.actionText'],
+[data-localization-key='signIn.start.actionLink'] {
+  display: none !important;
+}
+
+/* Hide Clerk SignIn modal footer link/text variations */
+[data-localization-key='signIn.footer.actionText'],
+[data-localization-key='signIn.footer.actionLink'] {
+  display: none !important;
+}
+.cl-footer,
+.cl-footerAction,
+.cl-footerActionText,
+.cl-footerActionLink {
+  display: none !important;
 }

@@ -21,7 +21,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
+    <ClerkProvider
+      appearance={{
+        elements: {
+          footer: 'hidden',
+        },
+      }}
+    >
       <html lang="en">
         <body className={`${outfit.variable} antialiased`}>
           <Header />
@@ -32,3 +38,18 @@ export default function RootLayout({
     </ClerkProvider>
   );
 }
+
+// import { useSignIn } from "@clerk/nextjs";
+
+// export default function CustomSignIn() {
+//   const { signIn, setActive } = useSignIn();
+
+//   // your own form here…
+//   return (
+//     <form>
+//       {/* fields for identifier + password */}
+//       <button type="submit">Sign In</button>
+//       {/* no signup link here */}
+//     </form>
+//   );
+// }

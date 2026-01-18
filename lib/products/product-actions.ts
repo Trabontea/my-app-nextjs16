@@ -22,12 +22,20 @@ export const addProductAction = async (
 
   try {
     //check if the user is authenticated
-    const { userId } = await auth();
+    // in the case of organization Id => orgId
+    const { userId, orgId } = await auth();
 
     if (!userId) {
       return {
         success: false,
         message: 'You must be signed in to  submit a product',
+      };
+    }
+
+    if (!orgId) {
+      return {
+        success: false,
+        message: 'You must be a member of an organization to submit a product',
       };
     }
 
@@ -66,6 +74,7 @@ export const addProductAction = async (
       tags: tagsArray,
       status: 'pending',
       submittedBy: userEmail,
+      organizationId: orgId || '', // organisation is set in Clerck / Db
       userId,
     });
 

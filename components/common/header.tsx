@@ -34,7 +34,7 @@ const Logo = () => {
 
 const Header = () => {
   const pathname = usePathname() || '/';
-  const isSignedIn = false;
+
   return (
     <header className="sticky top-0 z-50 border-b bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
       <div className="wrapper px-12">
@@ -45,7 +45,7 @@ const Header = () => {
               href="/"
               className={cn(
                 'flex items-center gap-2 px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors hover:bg-muted/50',
-                pathname === '/' && 'bg-muted/50'
+                pathname === '/' && 'bg-muted/50',
               )}
             >
               <HomeIcon className="size-4" />
@@ -55,7 +55,7 @@ const Header = () => {
               href="/explore"
               className={cn(
                 'flex items-center gap-2 px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors hover:bg-muted/50',
-                pathname === '/explore' && 'bg-muted/50'
+                pathname === '/explore' && 'bg-muted/50',
               )}
             >
               <CompassIcon className="size-4" />
