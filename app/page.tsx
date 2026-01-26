@@ -2,6 +2,7 @@ import FeaturedProducts from '@/components/landing-page/featured-products';
 import LandingPage from '@/components/landing-page/landing-page';
 import RecentlyLaunchedProducts from '@/components/landing-page/recently-launched-products';
 import { Suspense } from 'react';
+import ProductSkeleton from '@/components/products/product-skeleton';
 
 export default function Home() {
   return (
@@ -10,7 +11,7 @@ export default function Home() {
 
       <FeaturedProducts />
 
-      <Suspense fallback={<div>LOading...</div>}>
+      <Suspense fallback={<ProductSkeleton />}>
         <RecentlyLaunchedProducts />
       </Suspense>
     </div>

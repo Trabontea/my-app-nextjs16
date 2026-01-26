@@ -40,10 +40,8 @@ export default function RootLayout({
 }
 
 // import { useSignIn } from "@clerk/nextjs";
-
 // export default function CustomSignIn() {
 //   const { signIn, setActive } = useSignIn();
-
 //   // your own form here…
 //   return (
 //     <form>

@@ -4,6 +4,8 @@ import { productSchema } from './product-validations';
 import { db } from '@/db';
 import { products } from '@/db/schema';
 import z from 'zod';
+import { eq, sql } from 'drizzle-orm';
+import { revalidatePath } from 'next/cache';
 
 type FormState = {
   success: boolean;
@@ -28,7 +30,8 @@ export const addProductAction = async (
     if (!userId) {
       return {
         success: false,
-        message: 'You must be signed in to  submit a product',
+        message: 'You must be signed in to submit a product',
+        errors: undefined,
       };
     }
 
@@ -36,6 +39,7 @@ export const addProductAction = async (
       return {
         success: false,
         message: 'You must be a member of an organization to submit a product',
+        errors: undefined,
       };
     }
 
@@ -96,6 +100,116 @@ export const addProductAction = async (
       success: true,
       errors: error,
       message: 'Failed to submit product',
+    };
+  }
+};
+
+/**
+ * Server Action - Upvote a product
+ * Increments the vote count for a specific product by 1
+ * @param productId - The ID of the product to upvote
+ * @returns Object with success status and message
+ */
+export const upvoteProductAction = async (productId: number) => {
+  try {
+    // Get the authenticated user's ID and organization ID
+    const { userId, orgId } = await auth();
+
+    // Check if user is authenticated
+    if (!userId) {
+      console.log('User not signed in');
+      return {
+        success: false,
+        message: 'You must be signed in to submit a product',
+      };
+    }
+
+    // Check if user belongs to an organization
+    if (!orgId) {
+      console.log('User not a member of an organization');
+      return {
+        success: false,
+        message: 'You must be a member of an organization to submit a product',
+      };
+    }
+
+    // Update the product's vote count in the database
+    // Use GREATEST to ensure vote count never goes below 0
+    await db
+      .update(products)
+      .set({
+        voteCount: sql`GREATEST(0, vote_count + 1)`,
+      })
+      .where(eq(products.id, productId));
+
+    // Revalidate the home page cache to show updated vote count
+    revalidatePath('/');
+
+    return {
+      success: true,
+      message: 'Product upvoted successfully',
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      success: false,
+      message: 'Failed to upvote product',
+      voteCount: 0,
+    };
+  }
+};
+
+/**
+ * Server Action - Downvote a product
+ * Decrements the vote count for a specific product by 1
+ * @param productId - The ID of the product to downvote
+ * @returns Object with success status and message
+ */
+export const downvoteProductAction = async (productId: number) => {
+  try {
+    // Get the authenticated user's ID and organization ID
+    const { userId, orgId } = await auth();
+
+    // Check if user is authenticated
+    if (!userId) {
+      console.log('User not signed in');
+      return {
+        success: false,
+        message: 'You must be signed in to submit a product',
+      };
+    }
+
+    // Check if user belongs to an organization
+    if (!orgId) {
+      console.log('User not a member of an organization');
+      return {
+        success: false,
+        message: 'You must be a member of an organization to submit a product',
+      };
+    }
+
+    // Update the product's vote count in the database
+    // Use GREATEST to ensure vote count never goes below 0
+    await db
+      .update(products)
+      .set({
+        voteCount: sql`GREATEST(0, vote_count - 1)`,
+      })
+      .where(eq(products.id, productId));
+
+    // Revalidate the home page cache to show updated vote count
+    revalidatePath('/');
+
+    return {
+      success: true,
+      message: 'Product downvoted successfully',
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      success: false,
+      message: 'Failed to downvote product',
+      voteCount: 0,
     };
   }
 };

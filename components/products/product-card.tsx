@@ -10,6 +10,7 @@ import Link from 'next/link';
 import { Badge } from '../ui/badge';
 import { InferSelectModel } from 'drizzle-orm';
 import { products } from '@/db/schema';
+import VotingButtons from './voting-buttons';
 
 type Product = InferSelectModel<typeof products>;
 
@@ -45,11 +46,11 @@ export default function ProductCard({ product }: { product: Product }) {
               <CardDescription>{product.description}</CardDescription>
             </div>
             {/** Voting buttons */}
-            {/* <VotingButtons
+            <VotingButtons
               hasVoted={hasVoted}
               voteCount={product.voteCount}
               productId={product.id}
-            /> */}
+            />
           </div>
         </CardHeader>
         <CardFooter>

@@ -18,6 +18,7 @@ import {
   UserButton,
 } from '@clerk/nextjs';
 import { Suspense } from 'react';
+import CustomUserButton from './custom-user-button';
 
 const Logo = () => {
   return (
@@ -84,7 +85,7 @@ const Header = () => {
                     Submit Project
                   </Link>
                 </Button>
-                <UserButton />
+                <CustomUserButton />
               </SignedIn>
             </Suspense>
           </div>
