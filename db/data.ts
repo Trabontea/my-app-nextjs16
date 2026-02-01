@@ -135,4 +135,151 @@ export const allProducts = [
     submittedBy: 'kulkarni.ankita09@gmail.com',
     voteCount: 340,
   },
+  {
+    id: 10,
+    name: 'AI Content Generator',
+    slug: 'ai-content-generator',
+    tagline: 'Generate high-quality content with AI in seconds',
+    description:
+      'Transform your content creation process with AI-powered writing assistant. Generate blog posts, social media content, and marketing copy that engages your audience.',
+    websiteUrl: 'https://aicontentgen.example.com',
+    tags: ['AI', 'Content', 'Marketing'],
+    createdAt: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000), // 6 days ago
+    approvedAt: new Date(Date.now() - 6 * 24 * 60 * 60 * 1000),
+    status: 'approved' as const,
+    submittedBy: 'sarah@example.com',
+    voteCount: 789,
+  },
+  {
+    id: 11,
+    name: 'SecureVault',
+    slug: 'securevault',
+    tagline: 'Enterprise-grade password management for teams',
+    description:
+      "Keep your team's passwords safe with military-grade encryption, secure sharing, and advanced access controls. Perfect for teams of any size.",
+    websiteUrl: 'https://securevault.example.com',
+    tags: ['Security', 'SaaS', 'Enterprise'],
+    createdAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000), // 7 days ago
+    approvedAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000),
+    status: 'approved' as const,
+    submittedBy: 'security@example.com',
+    voteCount: 456,
+  },
+  {
+    id: 12,
+    name: 'DesignKit Pro',
+    slug: 'designkit-pro',
+    tagline: 'Complete design system for modern web apps',
+    description:
+      'Accelerate your design workflow with 500+ professionally crafted components, icons, and templates. Built with Tailwind CSS and Figma integration.',
+    websiteUrl: 'https://designkit.example.com',
+    tags: ['Design', 'UI/UX', 'Tailwind CSS'],
+    createdAt: new Date(Date.now() - 8 * 24 * 60 * 60 * 1000), // 8 days ago
+    approvedAt: new Date(Date.now() - 8 * 24 * 60 * 60 * 1000),
+    status: 'approved' as const,
+    submittedBy: 'designer@example.com',
+    voteCount: 892,
+  },
+  {
+    id: 13,
+    name: 'CloudBackup Plus',
+    slug: 'cloudbackup-plus',
+    tagline: 'Automated backups for your entire infrastructure',
+    description:
+      'Never lose data again with automated cloud backups, instant recovery, and cross-region replication. Supports all major cloud providers and databases.',
+    websiteUrl: 'https://cloudbackup.example.com',
+    tags: ['Infrastructure', 'DevOps', 'Cloud'],
+    createdAt: new Date(Date.now() - 9 * 24 * 60 * 60 * 1000), // 9 days ago
+    approvedAt: new Date(Date.now() - 9 * 24 * 60 * 60 * 1000),
+    status: 'approved' as const,
+    submittedBy: 'devops@example.com',
+    voteCount: 234,
+  },
+  {
+    id: 14,
+    name: 'SocialScheduler',
+    slug: 'social-scheduler',
+    tagline: 'Schedule and manage all your social media posts',
+    description:
+      'Plan, schedule, and publish content across all major social platforms. Analytics, team collaboration, and AI-powered content suggestions included.',
+    websiteUrl: 'https://socialscheduler.example.com',
+    tags: ['Social Media', 'Marketing', 'SaaS'],
+    createdAt: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000), // 10 days ago
+    approvedAt: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000),
+    status: 'approved' as const,
+    submittedBy: 'marketing@example.com',
+    voteCount: 567,
+  },
+  {
+    id: 15,
+    name: 'BugTracker Elite',
+    slug: 'bugtracker-elite',
+    tagline: 'Track and fix bugs faster with intelligent insights',
+    description:
+      'Advanced bug tracking with AI-powered duplicate detection, automated triage, and seamless integration with GitHub, Jira, and Slack.',
+    websiteUrl: 'https://bugtracker.example.com',
+    tags: ['Developer Tools', 'Project Management', 'AI'],
+    createdAt: new Date(Date.now() - 11 * 24 * 60 * 60 * 1000), // 11 days ago
+    approvedAt: new Date(Date.now() - 11 * 24 * 60 * 60 * 1000),
+    status: 'approved' as const,
+    submittedBy: 'dev@example.com',
+    voteCount: 423,
+  },
+  {
+    id: 16,
+    name: 'FormBuilder Pro',
+    slug: 'formbuilder-pro',
+    tagline: 'Create powerful forms without writing code',
+    description:
+      'Build beautiful, responsive forms with drag-and-drop simplicity. Includes conditional logic, payment integration, and advanced analytics.',
+    websiteUrl: 'https://formbuilder.example.com',
+    tags: ['No-Code', 'Forms', 'SaaS'],
+    createdAt: new Date(Date.now() - 12 * 24 * 60 * 60 * 1000), // 12 days ago
+    status: 'pending' as const,
+    submittedBy: 'forms@example.com',
+    voteCount: 312,
+  },
+  {
+    id: 17,
+    name: 'SEO Analyzer',
+    slug: 'seo-analyzer',
+    tagline: 'Comprehensive SEO audits and recommendations',
+    description:
+      'Improve your search rankings with detailed SEO analysis, competitor insights, and actionable recommendations. Monitor your progress with daily rank tracking.',
+    websiteUrl: 'https://seoanalyzer.example.com',
+    tags: ['SEO', 'Marketing', 'Analytics'],
+    createdAt: new Date(Date.now() - 13 * 24 * 60 * 60 * 1000), // 13 days ago
+    status: 'pending' as const,
+    submittedBy: 'seo@example.com',
+    voteCount: 678,
+  },
+  {
+    id: 18,
+    name: 'ChatWidget Live',
+    slug: 'chatwidget-live',
+    tagline: 'Real-time chat support for your website',
+    description:
+      'Engage with your visitors instantly using our customizable chat widget. Features include chatbots, canned responses, and multi-language support.',
+    websiteUrl: 'https://chatwidget.example.com',
+    tags: ['Customer Support', 'SaaS', 'Communication'],
+    createdAt: new Date(Date.now() - 14 * 24 * 60 * 60 * 1000), // 14 days ago
+    status: 'rejected' as const,
+    submittedBy: 'support@example.com',
+    voteCount: 189,
+  },
+  {
+    id: 19,
+    name: 'InvoiceFlow',
+    slug: 'invoiceflow',
+    tagline: 'Professional invoicing for freelancers and agencies',
+    description:
+      'Create, send, and track professional invoices in minutes. Automated reminders, payment tracking, and seamless integration with popular payment gateways.',
+    websiteUrl: 'https://invoiceflow.example.com',
+    tags: ['Finance', 'SaaS', 'Freelance'],
+    createdAt: new Date(Date.now() - 15 * 24 * 60 * 60 * 1000), // 15 days ago
+    approvedAt: new Date(Date.now() - 15 * 24 * 60 * 60 * 1000),
+    status: 'approved' as const,
+    submittedBy: 'invoice@example.com',
+    voteCount: 543,
+  },
 ];

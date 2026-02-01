@@ -21,8 +21,30 @@ export async function getFeaturedProducts() {
   return productsData;
 }
 
+/**
+ * Fetch all approved products only.
+ * Results are filtered by status = 'approved' and ordered by vote count in descending order.
+ * Note: This function does NOT use the cache directive, so results are fetched fresh on each call.
+ */
+export async function getAllApprovedProducts() {
+  // Build the query: SELECT * FROM products WHERE status = 'approved' ORDER BY voteCount DESC
+  const productsData = await db
+    .select()
+    .from(products)
+    .where(eq(products.status, 'approved'))
+    .orderBy(desc(products.voteCount));
+
+  return productsData;
+}
+
+/**
+ * Fetch all products regardless of status.
+ * Results are ordered by vote count in descending order (highest votes first).
+ * Uses Next.js cache directive to enable caching of the result.
+ */
 export async function getAllProducts() {
   'use cache';
+  // Build the query: SELECT * FROM products ORDER BY voteCount DESC
   const productsData = await db
     .select()
     .from(products)
@@ -48,6 +70,26 @@ export async function getRecentlyLaunchedProducts() {
       // Ensure the product has a creation date, then normalize and compare.
       // The `toISOString()` + `new Date(...)` step normalizes the date for reliable comparison.
       product.createdAt &&
-      new Date(product.createdAt.toISOString()) >= oneWeekAgo
+      new Date(product.createdAt.toISOString()) >= oneWeekAgo,
   );
+}
+
+/**
+ * Fetch a single product by its URL-friendly slug.
+ * Uses Drizzle ORM to build a SELECT query on the `products` table,
+ * filtering by `slug`, and limits the result to one row.
+ * Returns the first matching product or `null` if none is found.
+ */
+export async function getProductBySlug(slug: string) {
+  // Execute: SELECT * FROM products WHERE slug = ? LIMIT 1
+  const product = await db
+    .select()
+    .from(products)
+    // `eq` creates an equality condition for the WHERE clause, o comparare
+    .where(eq(products.slug, slug))
+    // Limit to one row; Drizzle returns an array
+    .limit(1);
+
+  // Return the first (and only) item, or null if no match
+  return product?.[0] ?? null;
 }
